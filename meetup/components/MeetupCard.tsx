@@ -1,20 +1,25 @@
-interface Meetup {
-  id: string;
-  title: string;
-  image: string;
-  address: string;
-  description: string;
-}
+// interface Meetup {
+//   id: string;
+//   title: string;
+//   image: string;
+//   address: string;
+//   description: string;
+// }
 
-const MeetupCard: React.FC<{ data: Meetup }> = ({ data }) => {
-  const { id, title, image, address, description } = data;
+import mongoose from "mongoose";
+import connectionStr from "../app/lib/db";
+import Meetup from "@/app/lib/model/model";
+
+const MeetupCard: React.FC<{ id: String }> = async ({ id }) => {
+  await mongoose.connect(connectionStr);
+  const data = await Meetup.findById(id);
 
   return (
     <div className="card shadow-inner">
-      <img src={image} alt={title} />
-      <h2>{title}</h2>
-      <p>{address}</p>
-      <p>{description}</p>
+      <img src={data.image} alt={data.title} />
+      <h2>{data.title}</h2>
+      <p>{data.address}</p>
+      <p>{data.description}</p>
     </div>
   );
 };

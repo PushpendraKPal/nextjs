@@ -25,11 +25,11 @@ const MeetupList = async () => {
   return (
     <div>
       {data.map((meetup: any) => (
-        <div key={meetup.id} className="card shadow-inner">
+        <div key={meetup._id} className="card shadow-inner">
           <img src={meetup.image} alt={meetup.title} />
           <h2>{meetup.title}</h2>
           <p className="mb-3">{meetup.address}</p>
-          <Link href={`/${meetup.id}`} className="button">
+          <Link href={`/${meetup._id}`} className="button">
             Get Details
           </Link>
         </div>

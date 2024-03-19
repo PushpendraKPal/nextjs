@@ -1,5 +1,4 @@
 import MeetupCard from "@/components/MeetupCard";
-import { GetStaticPaths, GetStaticProps } from "next";
 
 interface Meetup {
   id: string;
@@ -9,20 +8,10 @@ interface Meetup {
   description: string;
 }
 
-function MeetupDetails({ params }: { params: { meetupId: string } }) {
-  const { meetupId } = params;
+async function MeetupDetails({ params }: { params: { meetup: string } }) {
+  const { meetup } = params;
 
-  return (
-    <MeetupCard
-      data={{
-        id: "string",
-        title: "string",
-        image: "string",
-        address: "string",
-        description: "string",
-      }}
-    />
-  );
+  return <MeetupCard id={meetup} />;
 }
 
 export default MeetupDetails;
