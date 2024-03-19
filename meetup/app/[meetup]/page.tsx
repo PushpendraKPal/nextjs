@@ -1,4 +1,6 @@
 import MeetupCard from "@/components/MeetupCard";
+import { Fragment } from "react";
+import { Head } from "next/document";
 
 interface Meetup {
   id: string;

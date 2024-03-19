@@ -1,7 +1,8 @@
 // page.tsx
 import MeetupList from "@/components/Meetup_list";
 import { NextPage } from "next";
-import { useState } from "react";
+import Head from "next/head";
+import { Fragment, useState } from "react";
 
 // const arr: Meetup[] = [
 //   {
@@ -56,9 +57,18 @@ interface Meetup {
 
 const Home: NextPage = async () => {
   return (
-    <div className="home">
-      <MeetupList />
-    </div>
+    <Fragment>
+      <Head>
+        <title>React Meetups</title>
+        <meta
+          name="React Meetups"
+          content="This is the portal which let you learn react in a faster way"
+        />
+      </Head>
+      <div className="home">
+        <MeetupList />
+      </div>
+    </Fragment>
   );
 };
 
