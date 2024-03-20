@@ -48,6 +48,20 @@ const Task: React.FC<Props> = ({ _id, task, completed, date }) => {
     if (data.success && !task) alert("Great!, you have completed the task.");
   };
 
+  const handleDelete = async () => {
+    const response = await fetch("http://localhost:3000/api", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id,
+      }),
+    });
+
+    const data = await response.json();
+  };
+
   return (
     <div className="task_container" id={edit ? "editMode" : ""}>
       <div>
@@ -84,6 +98,7 @@ const Task: React.FC<Props> = ({ _id, task, completed, date }) => {
             type="button"
             className="inline-block rounded-full border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600  focus:border-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 motion-reduce:transition-none delete"
             data-twe-ripple-init
+            onClick={handleDelete}
           >
             Delete
           </button>

@@ -32,3 +32,12 @@ export const PUT = async (req: Request, res: Response) => {
   );
   return NextResponse.json({ result: data, success: true });
 };
+
+export const DELETE = async (req: Request, res: Response) => {
+  const payload = await req.json();
+  const { _id } = payload;
+  console.log(payload);
+  await mongoose.connect(connectionStr);
+  const data = await Todos.findByIdAndDelete(_id);
+  return NextResponse.json({ result: data, success: true });
+};
