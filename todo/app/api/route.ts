@@ -22,9 +22,13 @@ export const POST = async (req: Request, res: Response) => {
 
 export const PUT = async (req: Request, res: Response) => {
   const payload = await req.json();
-  const { _id, task, completed, date } = payload;
+  const { _id, task, completed } = payload;
   console.log(payload);
   await mongoose.connect(connectionStr);
-  const data = await Todos.findByIdAndUpdate(_id, { completed }, { new: true });
+  const data = await Todos.findByIdAndUpdate(
+    _id,
+    { completed, task },
+    { new: true }
+  );
   return NextResponse.json({ result: data, success: true });
 };
