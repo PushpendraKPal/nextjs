@@ -4,6 +4,7 @@ import Todos from "../database/model/model";
 import { useState } from "react";
 import { NextResponse } from "next/server";
 import Task from "./Task";
+import Link from "next/link";
 
 const ShowTodos = async () => {
   const getTodos = async () => {
@@ -19,12 +20,21 @@ const ShowTodos = async () => {
 
   return (
     <div>
+      <div className="link_container">
+        <Link href={"/"} className="all">
+          All tasks
+        </Link>
+        <Link href={"/completed"} className="all comp">
+          Completed Tasks
+        </Link>
+      </div>
       {data.map((ele) => (
         <Task
           task={ele.task}
           completed={ele.completed}
           date={ele.date}
           _id={ele._id}
+          key={ele._id}
         ></Task>
       ))}
     </div>

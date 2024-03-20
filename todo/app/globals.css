@@ -65,3 +65,16 @@
 .editInput {
   width: 70%;
 }
+.all {
+  border: 2px solid gray;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.comp {
+  margin-left: 10px;
+}
+.link_container {
+  width: 51%;
+  margin: auto;
+  margin-bottom: 50px;
+}
