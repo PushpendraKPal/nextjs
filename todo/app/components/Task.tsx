@@ -1,22 +1,41 @@
 "use client";
+
 import React, { useState } from "react";
 
 type Props = {
   task: String;
   completed: Boolean;
   date: Date;
+  _id: String;
 };
 
-const Task: React.FC<Props> = ({ task, completed, date }) => {
-  const [change, setChange] = useState(false);
+const Task: React.FC<Props> = ({ _id, task, completed, date }) => {
+  const handleChange = async () => {
+    const response = await fetch("http://localhost:3000/api", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id,
+        task,
+        completed: !completed,
+        date,
+      }),
+    });
+
+    const data = await response.json();
+    if (data.success && !task) alert("Great!, you have completed the task.");
+  };
 
   return (
     <div className="task_container">
       <div>
         <input
           type="checkbox"
-          onChange={(e) => setChange((pre) => !pre)}
+          onChange={handleChange}
           className="chk"
+          checked={completed ? true : false}
         />
         <span>{task}</span>
       </div>

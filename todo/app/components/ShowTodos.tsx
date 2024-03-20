@@ -12,14 +12,20 @@ const ShowTodos = async () => {
     if (data.success) return data.result;
     else return null;
   };
-  let data: { task: String; completed: false; date: Date }[] = await getTodos();
+  let data: { task: String; completed: false; date: Date; _id: String }[] =
+    await getTodos();
 
   if (!data) data = [];
 
   return (
     <div>
       {data.map((ele) => (
-        <Task task={ele.task} completed={ele.completed} date={ele.date}></Task>
+        <Task
+          task={ele.task}
+          completed={ele.completed}
+          date={ele.date}
+          _id={ele._id}
+        ></Task>
       ))}
     </div>
   );

@@ -18,7 +18,7 @@ function AddTodo() {
       },
       body: JSON.stringify({
         task: newTodo,
-        completed: false,
+        completed: true,
         date: new Date(),
       }),
     });

@@ -19,3 +19,12 @@ export const POST = async (req: Request, res: Response) => {
   const result = await todo.save();
   return NextResponse.json({ result, success: true });
 };
+
+export const PUT = async (req: Request, res: Response) => {
+  const payload = await req.json();
+  const { _id, task, completed, date } = payload;
+  console.log(payload);
+  await mongoose.connect(connectionStr);
+  const data = await Todos.findByIdAndUpdate(_id, { completed }, { new: true });
+  return NextResponse.json({ result: data, success: true });
+};
